@@ -2,8 +2,7 @@
 echo "----welcome to gambling Simulation----"
 #initialize variable
 stake_for_day=100
-bet=1
-amount=0
+Bet=1
 declare -A result
 #calculate resignpercent
 function resignpercent() {
@@ -14,22 +13,27 @@ do
 	val="$(resignpercent)"
 	#50%greater than stake
 	wonResign=$(($stake_for_day+$val))
+	#echo $wonResign
 	#50% less than stake
 	loseResign=$(($stake_for_day-$val))
-
+	echo $loseResign
 	while [[ $wonResign -gt $stake_for_day  && $loseResign -lt $stake_for_day ]]
 	do
 		#check win or lose 
 		if [ $((RANDOM%2)) -eq 1 ]
 		then
-			echo "WON"
-			amount=$(($stake_for_day+$Bet))
+			((stake_for_day++))
 		else
-			echo "LOST"
-			amount=$(($stake_for_day-$Bet))
+			((stake_for_day--))
 		fi
 	done
-	result[$i]=$amount
-done        
-
+	result[$i]=$stake_for_day
+done       
+echo "Monthly win or loss ammount"
+echo "D  Ammount"
+for j in ${!result[@]}
+do
+	value=${result[$j]}
+	echo $j"  "$value
+done 
 
