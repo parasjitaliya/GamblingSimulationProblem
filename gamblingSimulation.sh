@@ -3,7 +3,7 @@ echo "----welcome to gambling Simulation----"
 #initialize variable
 stake_for_day=100
 bet=1
-
+#check win or lose 
 check=$((RANDOM%2))
 if [ $check -eq 1 ]
 then
